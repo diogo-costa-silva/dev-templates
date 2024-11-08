@@ -39,6 +39,9 @@ brew install --cask visual-studio-code
 #### Android Platform Tools (with ADB)
 brew install android-platform-tools
 
+#### ChatGPT
+brew install --cask chatgpt
+
 ---
 
 ### Other tools
@@ -58,12 +61,20 @@ brew install --cask macdroid
 ### DeepL
 brew install --cask deepl
 
+### Notion
+brew install --cask notion
+
 ---
 
 ### Improve Accessability
 
 #### UnnaturalScrollWheels
 brew install --cask unnaturalscrollwheels
+
+#### Amphetamine
+mas install 937984704
+
+
 
 
 
