@@ -1,80 +1,8 @@
-# mac-setup
+# MacOS Setup
 
-#### Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+## 📚 Documentation
 
----
-
-
-==> Formulae
-
-#### Mac App Store
-brew install mas
-
----
-
-==> Casks
-
-### Internet Browsers
-
-#### Arc
-brew install --cask arc
-
-#### Google Chrome
-brew install --cask google-chrome
-
-#### Firefox
-brew install --cask firefox
-
----
-
-### Coding tools
-
-#### iterm2
-brew install --cask iterm2
-
-#### VS Code
-brew install --cask visual-studio-code
-
-#### Android Platform Tools (with ADB)
-brew install android-platform-tools
-
-#### ChatGPT
-brew install --cask chatgpt
-
----
-
-### Other tools
-
-#### KeePassXC
-brew install --cask keepassxc
-
-#### qbittorrent
-brew install --cask qbittorrent
-
-#### Google Drive
-brew install --cask google-drive
-
-#### MacDroid
-brew install --cask macdroid
-
-### DeepL
-brew install --cask deepl
-
-### Notion
-brew install --cask notion
-
----
-
-### Improve Accessability
-
-#### UnnaturalScrollWheels
-brew install --cask unnaturalscrollwheels
-
-#### Amphetamine
-mas install 937984704
-
-
-
-
-
+- [🛠️ HomeBrew Apps](./homebrew.md)
+- [⚙️ Python Configuration](./python.md)
+- [🧠 Git Configuration](./git.md)
+- [🛠️ Node Configuration](./node.md)
