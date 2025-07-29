@@ -2,7 +2,7 @@
 
 ## 📚 Documentation
 
-- [🛠️ HomeBrew Apps](./homebrew.md)
-- [⚙️ Python Configuration](./python.md)
-- [🧠 Git Configuration](./git.md)
-- [🛠️ Node Configuration](./node.md)
+- [🍺 HomeBrew Apps](./homebrew.md)
+- [📚 Git Configuration](./git.md)
+- [🐍 Python Configuration](./python.md)
+- [🟢 Node Configuration](./node.md)
