@@ -1,78 +1,100 @@
-# mac-setup
+# Homebrew Apps - macOS Setup
 
-#### Install Homebrew
+## Install Homebrew
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
----
+## Essential Tools
 
-
-==> Formulae
-
-#### Mac App Store
+### Mac App Store CLI
+```bash
 brew install mas
+```
 
 ---
 
-==> Casks
+## Development Tools
 
-### Internet Browsers
-
-#### Arc
-brew install --cask arc
-
-#### Google Chrome
-brew install --cask google-chrome
-
-#### Firefox
-brew install --cask firefox
-
----
-
-### Coding tools
-
-#### iterm2
+### Terminal & Code Editors
+```bash
+# iTerm2 - Better terminal
 brew install --cask iterm2
 
-#### VS Code
+# VS Code - Code editor
 brew install --cask visual-studio-code
+```
 
-#### Android Platform Tools (with ADB)
+### Development Utilities
+```bash
+# Android Platform Tools (ADB)
 brew install android-platform-tools
+```
 
-#### ChatGPT
+---
+
+## Internet & Communication
+
+### Web Browsers
+```bash
+# Arc Browser
+brew install --cask arc
+
+# Google Chrome
+brew install --cask google-chrome
+
+# Firefox
+brew install --cask firefox
+```
+
+### AI & Communication
+```bash
+# ChatGPT
 brew install --cask chatgpt
 
+# DeepL Translator
+brew install --cask deepl
+```
+
 ---
 
-### Other tools
+## Productivity & Utilities
 
-#### KeePassXC
-brew install --cask keepassxc
-
-#### qbittorrent
-brew install --cask qbittorrent
-
-#### Google Drive
+### File Management & Storage
+```bash
+# Google Drive
 brew install --cask google-drive
 
-#### MacDroid
+# MacDroid - Android file transfer
 brew install --cask macdroid
+```
 
-### DeepL
-brew install --cask deepl
-
-### Notion
+### Productivity Apps
+```bash
+# Notion - Notes and workspace
 brew install --cask notion
+
+# qBittorrent - Torrent client
+brew install --cask qbittorrent
+```
+
+### Security
+```bash
+# KeePassXC - Password manager
+brew install --cask keepassxc
+```
 
 ---
 
-### Improve Accessability
+## Accessibility Tools
 
-#### UnnaturalScrollWheels
+```bash
+# UnnaturalScrollWheels - Scroll direction control
 brew install --cask unnaturalscrollwheels
 
-#### Amphetamine
+# Amphetamine - Keep Mac awake (from Mac App Store)
 mas install 937984704
+```
 
 
 
