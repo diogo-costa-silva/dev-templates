@@ -1,6 +1,6 @@
 # Dev Templates & Configurations
 
-## MacOS Setup
+## 🍎 MacOS Setup
 - [🍺 HomeBrew Apps](./homebrew/homebrew.md)
 
 ## 📚 Documentation
