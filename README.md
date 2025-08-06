@@ -1,9 +1,11 @@
-# MacOS Setup
+# Dev Templates & Configurations
+
+## MacOS Setup
+- [🍺 HomeBrew Apps](./homebrew/homebrew.md)
 
 ## 📚 Documentation
 
 ### Development Environment Setup
-- [🍺 HomeBrew Apps](./homebrew/homebrew.md)
 - [📚 Git Configuration](./git/git.md)
 
 ### Language & Runtime Configuration
