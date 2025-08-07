@@ -52,11 +52,38 @@ uv add numpy pandas matplotlib seaborn
 
 ---
 
-## 📋 6. Save dependencies to requirements.txt
+## 📋 6. Save dependencies
 
 ```bash
-uv pip freeze > requirements.txt
+uv lock                         # Lock exact dependency versions (creates uv.lock)
+uv pip freeze > requirements.txt # Generate requirements.txt for pip compatibility
 ```
+
+> 💡 This creates both `uv.lock` (for UV users) and `requirements.txt` (for pip users)
+
+---
+
+## 🔄 For new users cloning this project
+
+### 🚀 Option A - With UV (recommended)
+```bash
+git clone <repository-url>
+cd <project-name>
+uv sync                         # Install dependencies from pyproject.toml + uv.lock
+source .venv/bin/activate       # Activate environment (macOS/Linux)
+```
+
+### 🐍 Option B - With traditional pip
+```bash
+git clone <repository-url>
+cd <project-name>
+python -m venv .venv
+source .venv/bin/activate       # Activate environment (macOS/Linux)
+pip install -r requirements.txt # Install dependencies from requirements.txt
+```
+
+> ✅ **UV users**: Use `uv sync` for exact dependencies from lock file  
+> ✅ **Pip users**: Use `pip install -r requirements.txt` for compatibility
 
 ---
 
