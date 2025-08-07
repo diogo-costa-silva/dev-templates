@@ -17,6 +17,10 @@ cd testwow
 
 ```bash
 git init
+
+
+gset-dcs
+gh dcs
 ```
 
 ---
