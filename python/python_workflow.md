@@ -52,7 +52,15 @@ uv add numpy pandas matplotlib seaborn
 
 ---
 
-## 📁 6. Create base project files
+## 📋 6. Save dependencies to requirements.txt
+
+```bash
+uv pip freeze > requirements.txt
+```
+
+---
+
+## 📁 7. Create base project files
 
 ```bash
 echo "# testwow" > README.md
@@ -62,7 +70,7 @@ touch .gitignore
 
 ---
 
-## 🚫 7. Generate a basic .gitignore
+## 🚫 8. Generate a basic .gitignore
 
 ```bash
 echo -e ".venv/\n__pycache__/\n.ipynb_checkpoints/\n*.pyc\n.DS_Store" > .gitignore
@@ -70,7 +78,7 @@ echo -e ".venv/\n__pycache__/\n.ipynb_checkpoints/\n*.pyc\n.DS_Store" > .gitigno
 
 ---
 
-## 💾 8. Make the initial commit
+## 💾 9. Make the initial commit
 
 ```bash
 git add .
@@ -79,7 +87,7 @@ git commit -m "Initial commit: Project structure and dependencies"
 
 ---
 
-## ☁️ 9. Connect to the remote GitHub repository (choose one of the options below)
+## ☁️ 10. Connect to the remote GitHub repository (choose one of the options below)
 
 ### 🔁 OPTION A — Create and push to GitHub via GitHub CLI
 
@@ -114,6 +122,9 @@ git push -u origin main
 ## 🚀 Daily Git workflow after setup
 
 ```bash
+# Pull latest changes (if working collaboratively or from multiple machines)
+git pull
+
 # Edit your code
 code main.py
 
