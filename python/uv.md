@@ -1,5 +1,29 @@
 # UV Python Project Setup Guide
 
+## New User Setup
+
+### 🚀 Cloning an existing UV project
+```bash
+git clone <repository-url>
+cd <project-name>
+uv sync                         # Install dependencies from pyproject.toml + uv.lock
+source .venv/bin/activate       # Activate environment (macOS/Linux)
+```
+
+### 🐍 Alternative: Using traditional pip
+```bash
+git clone <repository-url>
+cd <project-name>
+python -m venv .venv
+source .venv/bin/activate       # Activate environment (macOS/Linux)
+pip install -r requirements.txt # If requirements.txt is available
+```
+
+> ✅ **UV projects**: Use `uv sync` for exact dependency versions  
+> ✅ **Pip compatibility**: Use `pip install -r requirements.txt`
+
+---
+
 ## Installation
 
 ```bash
