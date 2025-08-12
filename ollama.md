@@ -1,15 +1,15 @@
-# Guia Completo — Ambiente Local com Ollama + Continue (VS Code)
-Autor: Diogo  
-Última atualização: 2025-08-09
+# Complete Guide — Local Environment with Ollama + Continue (VS Code)
+Author: Diogo Silva
+Last update: 2025-08-11
 
 ---
 
-## 1. Verificações iniciais
+## 1. Initial Checks
 
-Antes de começar, verificar que o sistema cumpre os requisitos.
+Before starting, verify that the system meets the requirements.
 
 ```bash
-# Sistema e CPU
+# System and CPU
 sw_vers
 uname -m
 sysctl -n machdep.cpu.brand_string 2>/dev/null || true
@@ -18,21 +18,21 @@ sysctl -n machdep.cpu.brand_string 2>/dev/null || true
 brew --version
 brew doctor
 
-# Node.js e npm (>= 18)
+# Node.js and npm (>= 18)
 node -v
 npm -v
 
 # VS Code CLI (>= 1.90)
 code -v
 
-# Localização do 'ollama' e conflitos
+# Ollama location and conflicts
 which -a ollama
 type -a ollama
 
-# Versão do ollama
+# Ollama version
 ollama --version || true
 
-# Serviços activos do brew
+# Active brew services
 brew services list | grep -i ollama || true
 
 # LaunchAgents/Daemons
@@ -40,43 +40,43 @@ launchctl list | grep -i ollama || true
 ls -la ~/Library/LaunchAgents | grep -i ollama || true
 ls -la /Library/LaunchDaemons | grep -i ollama || true
 
-# API local na porta 11434
+# Local API on port 11434
 lsof -iTCP:11434 -sTCP:LISTEN -nP || true
 curl -s http://localhost:11434/api/tags | jq . 2>/dev/null || curl -s http://localhost:11434/api/tags
 
-# Diretórios típicos
+# Typical directories
 echo "BREW prefix: $(brew --prefix)"
 ls -la "$HOME/.ollama" || true
 ls -la "$HOME/Library/Application Support/Ollama" || true
 
-# Diretório do Continue
+# Continue directory
 ls -la "$HOME/Library/Application Support/Continue" || true
 ```
 
 ---
 
-## 2. Instalação e configuração do Ollama (brew)
+## 2. Installing and Configuring Ollama (brew)
 
 ```bash
-# Instalar via brew
+# Install via brew
 brew install ollama
 
-# Remover App (se existir)
+# Remove App (if exists)
 sudo rm -rf /Applications/Ollama.app
 
-# Parar e limpar serviços antigos
+# Stop and clean old services
 brew services stop ollama || true
 launchctl bootout gui/$(id -u) "$HOME/Library/LaunchAgents/homebrew.mxcl.ollama.plist" 2>/dev/null || true
 sudo launchctl bootout system /Library/LaunchDaemons/homebrew.mxcl.ollama.plist 2>/dev/null || true
 sudo rm -f /Library/LaunchDaemons/homebrew.mxcl.ollama.plist
 
-# Iniciar serviço ao iniciar
+# Start service on startup
 brew services start ollama
 
-# iniciar ollama no terminal
+# Start ollama in terminal
 ollama serve
 
-# Verificar serviço
+# Check service
 brew services list | grep -i ollama
 lsof -iTCP:11434 -sTCP:LISTEN -nP
 curl -s http://localhost:11434/api/version
@@ -84,14 +84,22 @@ curl -s http://localhost:11434/api/version
 
 ---
 
-## 3. Gestão de modelos no Ollama
+## 3. Managing Models in Ollama
 
-### 3.1 Instalar modelos
+### 3.1 Installing Models
 ```bash
-# Modelo principal
+# Main model
 ollama pull llama3:8b
 
-# Outros modelos úteis
+# Coding Models
+ollama pull codellama:34b
+ollama pull deepseek-coder:33b
+
+
+
+
+
+# Other useful models
 ollama pull codellama
 ollama pull mistral
 ollama pull phi3
@@ -99,30 +107,30 @@ ollama pull qwen2.5-coder:1.5b-base
 ollama pull nomic-embed-text:latest
 ```
 
-### 3.2 Listar modelos
+### 3.2 List Models
 ```bash
 ollama list
 ```
 
-### 3.3 Remover modelos
+### 3.3 Remove Models
 ```bash
-ollama rm nome_do_modelo
+ollama rm model_name
 ```
 
-### 3.4 Ver detalhes de um modelo
+### 3.4 View Model Details
 ```bash
-ollama show nome_do_modelo
+ollama show model_name
 ```
 
 ---
 
-## 4. Uso do Ollama no terminal
+## 4. Using Ollama in Terminal
 
 ```bash
-# Chat interativo
+# Interactive Chat
 ollama run llama3
 
-# Código
+# Code
 ollama run codellama
 
 # Autocomplete
@@ -131,23 +139,23 @@ ollama run qwen2.5-coder:1.5b
 # Embeddings
 ollama run nomic-embed-text:latest
 
-# Sair
+# Exit
 Ctrl + C
 ```
 
 ---
 
-## 5. Integração com Continue (VS Code)
+## 5. Integration with Continue (VS Code)
 
-### 5.1 Instalar extensão
-- VS Code → Extensions → Procurar `Continue` → Instalar.
+### 5.1 Install Extension
+- VS Code → Extensions → Search for `Continue` → Install.
 
-### 5.2 Configuração
-Criar/editar:
+### 5.2 Configuration
+Create/edit:
 ```
 ~/Library/Application Support/Continue/config.json
 ```
-Conteúdo de exemplo:
+Example content:
 ```jsonc
 {
   "models": [
@@ -161,17 +169,17 @@ Conteúdo de exemplo:
 }
 ```
 
-### 5.3 Teste
-- Abrir painel Continue (`⌘J` → escolher Continue).
-- Executar:
+### 5.3 Test
+- Open Continue panel (`⌘J` → choose Continue).
+- Execute:
 ```
 /model llama3:8b
 ```
-- Se responder, ligação está OK.
+- If it responds, connection is OK.
 
 ---
 
-## 6. Automação com VS Code
+## 6. VS Code Automation
 
 `.vscode/tasks.json`:
 ```jsonc
@@ -196,11 +204,11 @@ Conteúdo de exemplo:
 
 ---
 
-## 7. Boas práticas
+## 7. Best Practices
 
-- Usar `.env` para tokens/credenciais e carregar com `export $(cat .env | xargs)`
-- Não commitar `config.json` com chaves privadas.
-- Monitorizar espaço:
+- Use `.env` for tokens/credentials and load with `export $(cat .env | xargs)`
+- Don't commit `config.json` with private keys.
+- Monitor space:
 ```bash
 du -sh ~/.ollama/models
 ```
@@ -210,12 +218,12 @@ du -sh ~/.ollama/models
 ## 8. Troubleshooting
 
 ```bash
-# Logs do Ollama
+# Ollama Logs
 log show --predicate 'process == "ollama"' --last 10m
 
-# Arranque em foreground
+# Foreground startup
 OLLAMA_LOG=debug ollama serve
 
-# Porta ocupada
+# Port in use
 lsof -iTCP:11434 -sTCP:LISTEN -nP
 ```
