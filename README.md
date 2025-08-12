@@ -7,11 +7,16 @@
 
 ### Development Environment Setup
 - [📚 Git Configuration](./git/git.md)
+- [🐑 Ollama AI Setup](./ollama.md)
 
 ### Language & Runtime Configuration
 - [🐍 Python Configuration](./python/python.md)
 - [🐍 UV Python Project Setup](./python/uv.md)
-- [🟢 Node Configuration](./node/node.md)
+- [� Python Project Workflow](./python/python_workflow.md)
+- [�🟢 Node Configuration](./node/node.md)
+
+## Data Analysis Projects
+- [✅ Data Analysis Checklist](./data_analysis/data_analysis_checklist.md)
 
 ### Templates & Resources
 - [📊 SQL Template](./sql/template.sql)
