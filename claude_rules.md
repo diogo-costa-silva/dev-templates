@@ -1,6 +1,6 @@
 # Claude Code Guidelines
 
-![[./images/cc_start_tips.png]]
+![Claude Code Starter Tips](./images/cc_start_tips.png)
 
 
 ### 1. Claude Rules:
