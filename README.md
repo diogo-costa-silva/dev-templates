@@ -16,7 +16,7 @@
 - [�🟢 Node Configuration](./node/node.md)
 
 ## Data Analysis Projects
-- [✅ Data Analysis Checklist](./data_analysis/data_analysis_checklist.md)
+- [✅ Data Analysis Checklist](./data_analysis/checklist.md)
 
 ### Templates & Resources
 - [📊 SQL Template](./sql/template.sql)
