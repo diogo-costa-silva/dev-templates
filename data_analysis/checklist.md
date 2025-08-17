@@ -4,18 +4,19 @@ This guide is data-agnostic and focuses on reproducible steps, best practices, a
 
 **Sequential workflow (CRISP-DM adapted for Data Analytics):**
 
-1. Project Setup
-2. Initial Data Overview
-3. Business Understanding 
-4. Data Understanding
-5. Database Design & Integration Planning
+0. Project Setup
+1. Initial Data Overview
+2. Business Understanding 
+3. Data Understanding
+4. Pre-EDA (Sanity Check)
+5. Data Modeling + DB Design & Integration Planning
 6. Data Preparation
 7. Exploratory Data Analysis (EDA)
 8. Insights & Reporting
 
 ---
 
-## 1) Project Setup
+## 0) Project Setup
 **Objective:** ensure reproducibility, organization, and security from the start.  
 **Deliverables:** versioned repository, folder structure, configured environment.
 
@@ -49,11 +50,11 @@ This guide is data-agnostic and focuses on reproducible steps, best practices, a
 
 ---
 
-## 2) Initial Data Overview
+## 1) Initial Data Overview
 **Objective:** rapid inventory of available datasets to understand what we have before formulating business questions.  
 **Deliverables:** dataset inventory, initial quality assessment, high-level relationship mapping.
 
-### 2.1) Dataset Inventory
+### 1.1) Dataset Inventory
 
 - [ ] **List all files/tables** with:
   - Name, size (rows × columns), format
@@ -68,7 +69,7 @@ df.head(10), df.tail(10)    # First/last rows
 df.columns.tolist()         # Complete column list
 ```
 
-### 2.2) High-Level Quality Check
+### 1.2) High-Level Quality Check
 
 - [ ] **Missing values:** `df.isnull().sum()` and `df.isnull().mean() * 100`
 - [ ] **Duplicates:** `df.duplicated().sum()` and by business key
@@ -76,7 +77,7 @@ df.columns.tolist()         # Complete column list
 - [ ] **Data types:** validate if correct (`df.dtypes`)
 - [ ] **Extreme values:** `df.describe()` to identify obvious issues
 
-### 2.3) Initial Relationship Identification
+### 1.3) Initial Relationship Identification
 
 - [ ] **Common variables** across datasets (same/similar names)
 - [ ] **Potential join keys** (foreign keys)
@@ -85,7 +86,7 @@ df.columns.tolist()         # Complete column list
 
 ---
 
-## 3) Business Understanding
+## 2) Business Understanding
 **Objective:** align problem, expected value, and success criteria based on available data.  
 **Deliverables:** problem statement, hypotheses, KPIs, acceptance criteria.
 
@@ -106,11 +107,11 @@ df.columns.tolist()         # Complete column list
 
 ---
 
-## 4) Data Understanding
+## 3) Data Understanding
 **Objective:** detailed technical analysis of data quality, structure, and content using Python/SQL tools.  
 **Deliverables:** data understanding report, data dictionary, identified problems and opportunities.
 
-### 4.1) Metadata and Data Origin
+### 3.1) Metadata and Data Origin
 
 - [ ] **Document data sources:**
   - Data owner/responsible person
@@ -119,7 +120,7 @@ df.columns.tolist()         # Complete column list
   - Data generation process
   - Dependencies and upstream systems
 
-### 4.2) Structure and Dimensions
+### 3.2) Structure and Dimensions
 
 - [ ] **Basic dimensional analysis:**
   - `df.shape` - How many rows × columns?
@@ -130,7 +131,7 @@ df.columns.tolist()         # Complete column list
   - Consistent conventions?
   - Need to rename columns?
 
-### 4.3) Data Types and Formats
+### 3.3) Data Types and Formats
 
 - [ ] **Check data types** (`df.dtypes`):
   - Numeric: int vs float, adequate precision?
@@ -143,7 +144,7 @@ df.columns.tolist()         # Complete column list
   - Text: encoding, case sensitivity
   - IDs: pattern, fixed/variable length
 
-### 4.4) Content Analysis
+### 3.4) Content Analysis
 
 - [ ] **Uniqueness and cardinality** per column:
   - `df.nunique()` - How many unique values?
@@ -156,7 +157,7 @@ df.columns.tolist()         # Complete column list
   - Temporal: point vs interval
   - Identifiers/keys
 
-### 4.5) Data Quality Assessment
+### 3.5) Data Quality Assessment
 
 - [ ] **Missing values analysis** (`df.isnull().sum()`):
   - Missing pattern: random vs systematic?
@@ -168,7 +169,7 @@ df.columns.tolist()         # Complete column list
   - Impossible values (negative ages, future dates)
   - IQR method: values outside Q1-1.5×IQR or Q3+1.5×IQR
 
-### 4.6) Duplicates and Consistency
+### 3.6) Duplicates and Consistency
 
 - [ ] **Duplicate analysis:**
   - `df.duplicated().sum()` - 100% duplicate rows
@@ -181,11 +182,11 @@ df.columns.tolist()         # Complete column list
 
 ---
 
-## 5) Database Design & Integration Planning
+## 4) Database Design & Integration Planning
 **Objective:** design coherent data structure and integration strategy before final preparation.  
 **Deliverables:** ER diagram, integration strategy, join plan, data dictionary.
 
-### 5.1) Entity and Attribute Mapping
+### 4.1) Entity and Attribute Mapping
 
 - [ ] **Map entities and attributes:**
   - Identify fact tables (events, metrics) vs dimension tables (references, categories)
@@ -198,7 +199,7 @@ df.columns.tolist()         # Complete column list
   - Expected cardinality
   - Document referential integrity rules
 
-### 5.2) Integration Strategy
+### 4.2) Integration Strategy
 
 - [ ] **Join planning:**
   - Join order (fact table as base)
@@ -220,7 +221,7 @@ FROM table1 t1
 LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
 ```
 
-### 5.3) Normalization and Denormalization Decisions
+### 4.3) Normalization and Denormalization Decisions
 
 - [ ] **Eliminate unnecessary redundancy**
 - [ ] **Create calculated columns only when necessary**
@@ -229,11 +230,11 @@ LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
 
 ---
 
-## 6) Data Preparation
+## 5) Data Preparation
 **Objective:** transform data into clean, analyzable structures.  
 **Deliverables:** clean datasets, reproducible scripts, transformation log.
 
-### 6.1) Essential Cleaning
+### 5.1) Essential Cleaning
 
 - [ ] **Format standardization:**
   ```python
@@ -252,7 +253,7 @@ LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
   df.fillna(method='ffill')                     # Temporal: forward fill
   ```
 
-### 6.2) Join Operations
+### 5.2) Join Operations
 
 - [ ] **Prepare keys for joins:**
   - Ensure same data types
@@ -266,7 +267,7 @@ LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
   print(f"Match rate: {df_merged['key_from_df2'].notna().mean():.2%}")
   ```
 
-### 6.3) Basic Feature Engineering
+### 5.3) Basic Feature Engineering
 
 - [ ] **Derive calculated variables:**
   ```python
@@ -280,7 +281,7 @@ LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
   df['is_high_value'] = df['value'] > df['value'].quantile(0.8)
   ```
 
-### 6.4) Validation and Testing
+### 5.4) Validation and Testing
 
 - [ ] **Post-cleaning consistency tests:**
   - Are business rules still valid?
@@ -290,11 +291,11 @@ LEFT JOIN table2 t2 ON t1.foreign_key = t2.id;
 
 ---
 
-## 7) Exploratory Data Analysis (EDA)
+## 6) Exploratory Data Analysis (EDA)
 **Objective:** generate insights and evidence for decisions.  
 **Deliverables:** reproducible notebook, explanatory graphics, top insights.
 
-### 7.1) Essential Univariate Analysis
+### 6.1) Essential Univariate Analysis
 
 ```python
 # Numerical variables
@@ -308,7 +309,7 @@ df['col'].value_counts(normalize=True)  # Percentages
 df['col'].value_counts().plot.bar()     # Visualization
 ```
 
-### 7.2) Key Relationship Analysis
+### 6.2) Key Relationship Analysis
 
 ```python
 # Correlations
@@ -324,7 +325,7 @@ pd.crosstab(df['cat1'], df['cat2'])
 pd.crosstab(df['cat1'], df['cat2'], normalize='index')
 ```
 
-### 7.3) Temporal Analysis (if applicable)
+### 6.3) Temporal Analysis (if applicable)
 
 ```python
 # Time series
@@ -336,7 +337,7 @@ df.groupby(df['date'].dt.dayofweek)['value'].mean() # By day of week
 df.groupby(df['date'].dt.month)['value'].mean()     # By month
 ```
 
-### 7.4) Segmentation and Insights
+### 6.4) Segmentation and Insights
 
 - [ ] **Analysis by quartiles/percentiles**
 - [ ] **Segments by relevant business logic**
@@ -345,7 +346,7 @@ df.groupby(df['date'].dt.month)['value'].mean()     # By month
 
 ---
 
-## 8) Insights & Reporting
+## 7) Insights & Reporting
 **Objective:** transform analyses into decisions and actions.  
 **Deliverables:** concise report, interpretive graphics, recommendations.
 
@@ -364,7 +365,13 @@ df.groupby(df['date'].dt.month)['value'].mean()     # By month
 - [ ] **Document limitations** (bias, quality, causality)
 - [ ] **Reproducible package:** notebooks + SQL + README
 
+<br>
+
 ---
+---
+---
+
+<br>
 
 ## Essential Toolkit - Advanced Commands
 
